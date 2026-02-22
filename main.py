@@ -193,6 +193,9 @@ def train_and_evaluate(
     """
     Stage 4 & 5: Model Training and Evaluation
     Trains Deep-XAI-Stable and baseline models, then evaluates.
+
+    NOTE: SHAP is imported ONLY after all training is complete to avoid
+    TensorFlow gradient registry conflicts.
     """
     logger.info("\n" + "=" * 60)
     logger.info("STAGE 4: MODEL TRAINING & EVALUATION")
@@ -206,6 +209,8 @@ def train_and_evaluate(
     target_column = "peg_deviation"
 
     all_results = {}
+    # Store data needed for SHAP analysis after all training
+    shap_queue = []
     visualizer = ResultVisualizer(config["paths"]["plots"])
 
     for coin_name, df in featured_data.items():
@@ -347,46 +352,61 @@ def train_and_evaluate(
         # Save model
         trainer.save_model(f"deep_xai_stable_{coin_name}_final.keras")
 
-        # --- SHAP Explainability ---
-        logger.info("\n--- XAI Analysis (SHAP) ---")
+        # Queue SHAP analysis for after all training is done
+        shap_queue.append({
+            "coin_name": coin_name,
+            "model": model,
+            "X_train": X_train,
+            "X_test": X_test,
+            "y_pred": y_pred_proposed,
+            "feature_columns": feature_columns,
+        })
+
+    # --- SHAP Explainability (after ALL training is complete) ---
+    logger.info("\n" + "=" * 60)
+    logger.info("STAGE 5: XAI ANALYSIS (SHAP)")
+    logger.info("=" * 60)
+
+    for item in shap_queue:
+        coin_name = item["coin_name"]
+        logger.info(f"\n--- SHAP analysis for {coin_name} ---")
         try:
+            import shap
             from src.explainability.shap_explainer import SHAPExplainer
 
             explainer = SHAPExplainer(
-                model=model,
-                feature_names=feature_columns,
+                model=item["model"],
+                feature_names=item["feature_columns"],
                 output_dir=config["paths"]["plots"],
             )
 
-            # Use subset of training data as background
-            n_bg = min(config["xai"].get("num_background_samples", 100), len(X_train))
-            bg_indices = np.random.choice(len(X_train), n_bg, replace=False)
-            background = X_train[bg_indices]
+            # Use KernelExplainer to avoid TF gradient conflicts
+            n_bg = min(config["xai"].get("num_background_samples", 100), len(item["X_train"]))
+            bg_indices = np.random.choice(len(item["X_train"]), n_bg, replace=False)
+            background = item["X_train"][bg_indices]
 
-            explainer.initialize_explainer(background, explainer_type="deep")
+            # Use KernelExplainer with a wrapper function (most compatible)
+            predict_fn = lambda x: item["model"].predict(x, verbose=0).flatten()
+            bg_mean = background.mean(axis=0, keepdims=True)
+            kernel_explainer = shap.KernelExplainer(
+                predict_fn,
+                bg_mean,
+            )
 
-            # Compute SHAP values for test samples
-            n_explain = min(200, len(X_test))
-            shap_values = explainer.compute_shap_values(X_test[:n_explain])
+            # Compute SHAP values for a small subset of test samples
+            n_explain = min(50, len(item["X_test"]))
+            shap_values = kernel_explainer.shap_values(item["X_test"][:n_explain])
+            explainer.shap_values = shap_values
 
-            # Generate plots
+            # Feature importance
             explainer.plot_feature_importance(
                 filename=f"{coin_name}_shap_importance.png"
             )
 
-            try:
-                explainer.plot_summary(
-                    X=X_test[:n_explain],
-                    filename=f"{coin_name}_shap_summary.png",
-                )
-            except Exception as e:
-                logger.warning(f"SHAP summary plot failed: {e}")
-
-            # Local explanation for a sample prediction
-            sample_idx = 0
+            # Local explanation
             local_exp = explainer.explain_single_prediction(
-                X_test[sample_idx],
-                float(y_pred_proposed[sample_idx]),
+                item["X_test"][0],
+                float(item["y_pred"][0]),
             )
             logger.info(f"  Local explanation: {local_exp.get('explanation_text', 'N/A')}")
 
