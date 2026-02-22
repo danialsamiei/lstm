@@ -1,0 +1,415 @@
+2026-02-22 07:48:35,020 [INFO] __main__: ============================================================
+2026-02-22 07:48:35,020 [INFO] __main__:   Deep-XAI-Stable Pipeline
+2026-02-22 07:48:35,020 [INFO] __main__:   Stablecoin Price Prediction with Explainability
+2026-02-22 07:48:35,020 [INFO] __main__: ============================================================
+2026-02-22 07:48:35,021 [INFO] __main__: Mode: full
+2026-02-22 07:48:35,021 [INFO] __main__: Config: configs/config.yaml
+2026-02-22 07:48:35,021 [INFO] __main__: Real data: False
+2026-02-22 07:48:35,021 [INFO] __main__: ============================================================
+2026-02-22 07:48:35,021 [INFO] __main__: STAGE 1: DATA COLLECTION
+2026-02-22 07:48:35,021 [INFO] __main__: ============================================================
+2026-02-22 07:48:35,021 [INFO] __main__: 
+--- Collecting data for USDT ---
+2026-02-22 07:48:35,021 [INFO] __main__: Generating synthetic market data for USDT
+2026-02-22 07:48:35,037 [INFO] src.data.onchain_data: Combined 6 on-chain metrics
+2026-02-22 07:48:35,037 [WARNING] src.data.sentiment_data: No Twitter bearer token provided, generating synthetic data
+2026-02-22 07:48:35,039 [INFO] src.data.sentiment_data: Generated 17521 synthetic twitter sentiment data points
+2026-02-22 07:48:35,039 [INFO] __main__:   Market: (17521, 5), On-chain: (731, 6), Sentiment: (17521, 3)
+2026-02-22 07:48:35,039 [INFO] __main__: 
+--- Collecting data for USDC ---
+2026-02-22 07:48:35,039 [INFO] __main__: Generating synthetic market data for USDC
+2026-02-22 07:48:35,056 [INFO] src.data.onchain_data: Combined 6 on-chain metrics
+2026-02-22 07:48:35,056 [WARNING] src.data.sentiment_data: No Twitter bearer token provided, generating synthetic data
+2026-02-22 07:48:35,058 [INFO] src.data.sentiment_data: Generated 17521 synthetic twitter sentiment data points
+2026-02-22 07:48:35,058 [INFO] __main__:   Market: (17521, 5), On-chain: (731, 6), Sentiment: (17521, 3)
+2026-02-22 07:48:35,058 [INFO] __main__: 
+--- Collecting data for DAI ---
+2026-02-22 07:48:35,058 [INFO] __main__: Generating synthetic market data for DAI
+2026-02-22 07:48:35,072 [INFO] src.data.onchain_data: Combined 6 on-chain metrics
+2026-02-22 07:48:35,072 [WARNING] src.data.sentiment_data: No Twitter bearer token provided, generating synthetic data
+2026-02-22 07:48:35,074 [INFO] src.data.sentiment_data: Generated 17521 synthetic twitter sentiment data points
+2026-02-22 07:48:35,075 [INFO] __main__:   Market: (17521, 5), On-chain: (731, 6), Sentiment: (17521, 3)
+2026-02-22 07:48:35,711 [INFO] __main__: 
+Raw data saved to data/raw/
+2026-02-22 07:48:35,711 [INFO] __main__: 
+============================================================
+2026-02-22 07:48:35,711 [INFO] __main__: STAGE 2: DATA PREPROCESSING
+2026-02-22 07:48:35,711 [INFO] __main__: ============================================================
+2026-02-22 07:48:35,711 [INFO] __main__: 
+--- Preprocessing USDT ---
+2026-02-22 07:48:35,712 [INFO] src.preprocessing.data_cleaner: No missing values found
+2026-02-22 07:48:35,724 [INFO] src.preprocessing.data_cleaner: Total outliers clipped: 6561
+2026-02-22 07:48:35,725 [INFO] src.preprocessing.data_cleaner: No missing values found
+2026-02-22 07:48:35,726 [INFO] src.preprocessing.data_cleaner: No missing values found
+2026-02-22 07:48:35,729 [INFO] src.preprocessing.data_cleaner: Aligned 3 DataFrames to 1h frequency. Shape: (17521, 13)
+2026-02-22 07:48:35,729 [INFO] __main__:   Combined shape after alignment: (17521, 13)
+2026-02-22 07:48:35,729 [INFO] __main__: 
+--- Preprocessing USDC ---
+2026-02-22 07:48:35,730 [INFO] src.preprocessing.data_cleaner: No missing values found
+2026-02-22 07:48:35,740 [INFO] src.preprocessing.data_cleaner: Total outliers clipped: 6561
+2026-02-22 07:48:35,741 [INFO] src.preprocessing.data_cleaner: No missing values found
+2026-02-22 07:48:35,741 [INFO] src.preprocessing.data_cleaner: No missing values found
+2026-02-22 07:48:35,744 [INFO] src.preprocessing.data_cleaner: Aligned 3 DataFrames to 1h frequency. Shape: (17521, 13)
+2026-02-22 07:48:35,744 [INFO] __main__:   Combined shape after alignment: (17521, 13)
+2026-02-22 07:48:35,744 [INFO] __main__: 
+--- Preprocessing DAI ---
+2026-02-22 07:48:35,745 [INFO] src.preprocessing.data_cleaner: No missing values found
+2026-02-22 07:48:35,755 [INFO] src.preprocessing.data_cleaner: Total outliers clipped: 5732
+2026-02-22 07:48:35,756 [INFO] src.preprocessing.data_cleaner: No missing values found
+2026-02-22 07:48:35,757 [INFO] src.preprocessing.data_cleaner: No missing values found
+2026-02-22 07:48:35,759 [INFO] src.preprocessing.data_cleaner: Aligned 3 DataFrames to 1h frequency. Shape: (17521, 13)
+2026-02-22 07:48:35,760 [INFO] __main__:   Combined shape after alignment: (17521, 13)
+2026-02-22 07:48:35,760 [INFO] __main__: 
+============================================================
+2026-02-22 07:48:35,760 [INFO] __main__: STAGE 3: FEATURE ENGINEERING
+2026-02-22 07:48:35,760 [INFO] __main__: ============================================================
+2026-02-22 07:48:35,760 [INFO] __main__: 
+--- Engineering features for USDT ---
+2026-02-22 07:48:35,760 [INFO] src.preprocessing.feature_engineering: Starting feature engineering. Initial shape: (17521, 13)
+2026-02-22 07:48:35,817 [INFO] src.preprocessing.feature_engineering: Feature engineering complete. Final shape: (17497, 69) (dropped 24 rows with NaN)
+2026-02-22 07:48:35,818 [INFO] __main__:   Features shape: (17497, 69)
+2026-02-22 07:48:35,818 [INFO] __main__: 
+--- Engineering features for USDC ---
+2026-02-22 07:48:35,818 [INFO] src.preprocessing.feature_engineering: Starting feature engineering. Initial shape: (17521, 13)
+2026-02-22 07:48:35,863 [INFO] src.preprocessing.feature_engineering: Feature engineering complete. Final shape: (17497, 69) (dropped 24 rows with NaN)
+2026-02-22 07:48:35,863 [INFO] __main__:   Features shape: (17497, 69)
+2026-02-22 07:48:35,863 [INFO] __main__: 
+--- Engineering features for DAI ---
+2026-02-22 07:48:35,863 [INFO] src.preprocessing.feature_engineering: Starting feature engineering. Initial shape: (17521, 13)
+2026-02-22 07:48:35,909 [INFO] src.preprocessing.feature_engineering: Feature engineering complete. Final shape: (17497, 69) (dropped 24 rows with NaN)
+2026-02-22 07:48:35,909 [INFO] __main__:   Features shape: (17497, 69)
+2026-02-22 07:48:41,433 [INFO] __main__: 
+============================================================
+2026-02-22 07:48:41,434 [INFO] __main__: STAGE 4: MODEL TRAINING & EVALUATION
+2026-02-22 07:48:41,434 [INFO] __main__: ============================================================
+2026-02-22 07:48:41,434 [INFO] __main__: 
+========================================
+2026-02-22 07:48:41,434 [INFO] __main__: Training models for USDT
+2026-02-22 07:48:41,434 [INFO] __main__: ========================================
+2026-02-22 07:48:41,632 [INFO] src.models.trainer: Created 17449 sequences: X(17449, 48, 66), y(17449,)
+2026-02-22 07:48:41,632 [INFO] __main__:   Input shape: (17449, 48, 66), Target shape: (17449,)
+2026-02-22 07:48:41,633 [INFO] src.models.trainer: Array split: train=12214, val=2617, test=2618
+2026-02-22 07:48:41,701 [INFO] src.preprocessing.data_cleaner: Fitted minmax scalers on 66 features
+2026-02-22 07:48:41,702 [INFO] __main__: 
+--- Training Deep-XAI-Stable ---
+2026-02-22 07:48:41,942 [INFO] src.models.trainer: Starting training: 200 epochs, batch_size=64, train_size=12214, val_size=2617
+2026-02-22 07:52:30,415 [INFO] src.models.trainer: Training complete. Best val_loss: 0.000253
+2026-02-22 07:52:37,536 [INFO] src.evaluation.visualizer: Training history plot saved
+2026-02-22 07:52:37,536 [INFO] __main__: 
+--- Training Simple LSTM ---
+2026-02-22 07:55:26,393 [INFO] __main__: --- Training GRU ---
+2026-02-22 08:00:43,610 [INFO] __main__: --- Training ARIMA ---
+2026-02-22 08:00:45,185 [INFO] src.models.baseline_models: ARIMA(5, 1, 0) fitted successfully
+2026-02-22 08:00:45,220 [INFO] __main__: 
+--- Evaluation ---
+2026-02-22 08:00:45,220 [INFO] src.evaluation.metrics: === Deep-XAI-Stable Evaluation ===
+2026-02-22 08:00:45,221 [INFO] src.evaluation.metrics:   rmse: 0.015737
+2026-02-22 08:00:45,221 [INFO] src.evaluation.metrics:   mae: 0.013394
+2026-02-22 08:00:45,221 [INFO] src.evaluation.metrics:   mape: 237.744812
+2026-02-22 08:00:45,221 [INFO] src.evaluation.metrics:   directional_accuracy: 10.011464
+2026-02-22 08:00:45,221 [INFO] src.evaluation.metrics:   r_squared: -0.642703
+2026-02-22 08:00:45,221 [INFO] src.evaluation.metrics: === Simple_LSTM Evaluation ===
+2026-02-22 08:00:45,221 [INFO] src.evaluation.metrics:   rmse: 0.015504
+2026-02-22 08:00:45,221 [INFO] src.evaluation.metrics:   mae: 0.013068
+2026-02-22 08:00:45,221 [INFO] src.evaluation.metrics:   mape: 230.049973
+2026-02-22 08:00:45,221 [INFO] src.evaluation.metrics:   directional_accuracy: 29.499427
+2026-02-22 08:00:45,221 [INFO] src.evaluation.metrics:   r_squared: -0.594533
+2026-02-22 08:00:45,221 [INFO] src.evaluation.metrics: === GRU Evaluation ===
+2026-02-22 08:00:45,221 [INFO] src.evaluation.metrics:   rmse: 0.015176
+2026-02-22 08:00:45,221 [INFO] src.evaluation.metrics:   mae: 0.012926
+2026-02-22 08:00:45,222 [INFO] src.evaluation.metrics:   mape: 213.347244
+2026-02-22 08:00:45,222 [INFO] src.evaluation.metrics:   directional_accuracy: 0.000000
+2026-02-22 08:00:45,222 [INFO] src.evaluation.metrics:   r_squared: -0.527704
+2026-02-22 08:00:45,222 [INFO] src.evaluation.metrics: === ARIMA Evaluation ===
+2026-02-22 08:00:45,222 [INFO] src.evaluation.metrics:   rmse: 0.013792
+2026-02-22 08:00:45,222 [INFO] src.evaluation.metrics:   mae: 0.010732
+2026-02-22 08:00:45,222 [INFO] src.evaluation.metrics:   mape: 352.496877
+2026-02-22 08:00:45,222 [INFO] src.evaluation.metrics:   directional_accuracy: 0.534964
+2026-02-22 08:00:45,222 [INFO] src.evaluation.metrics:   r_squared: -0.261684
+2026-02-22 08:00:45,222 [INFO] src.evaluation.metrics: DM Test: stat=4.2619, p=0.0000 *** (better: model2)
+2026-02-22 08:00:45,223 [INFO] src.evaluation.metrics: DM Test: stat=25.3769, p=0.0000 *** (better: model2)
+2026-02-22 08:00:45,223 [INFO] src.evaluation.metrics: DM Test: stat=7.4374, p=0.0000 *** (better: model2)
+2026-02-22 08:00:45,759 [INFO] src.evaluation.visualizer: Predictions vs actual plot saved
+2026-02-22 08:00:46,288 [INFO] src.evaluation.visualizer: Model comparison plot saved
+2026-02-22 08:00:46,665 [INFO] src.evaluation.visualizer: Error distribution plot saved
+2026-02-22 08:00:46,742 [INFO] src.models.trainer: Model saved to outputs/models/deep_xai_stable_USDT_final.keras
+2026-02-22 08:00:46,742 [INFO] __main__: 
+--- XAI Analysis (SHAP) ---
+2026-02-22 08:00:48,619 [INFO] src.explainability.shap_explainer: Initialized SHAP DeepExplainer
+2026-02-22 08:00:48,620 [INFO] src.explainability.shap_explainer: Computing SHAP values for 200 samples...
+2026-02-22 08:00:50,908 [WARNING] __main__: SHAP analysis failed for USDT: in user code:
+
+    File "/usr/local/lib/python3.11/dist-packages/shap/explainers/_deep/deep_tf.py", line 265, in grad_graph  *
+        x_grad = tape.gradient(out, shap_rAnD)
+
+    LookupError: gradient registry has no entry for: shap_TensorListStack
+
+2026-02-22 08:00:50,909 [WARNING] __main__: Continuing without XAI analysis...
+2026-02-22 08:00:50,909 [INFO] __main__: 
+========================================
+2026-02-22 08:00:50,909 [INFO] __main__: Training models for USDC
+2026-02-22 08:00:50,909 [INFO] __main__: ========================================
+2026-02-22 08:00:51,109 [INFO] src.models.trainer: Created 17449 sequences: X(17449, 48, 66), y(17449,)
+2026-02-22 08:00:51,109 [INFO] __main__:   Input shape: (17449, 48, 66), Target shape: (17449,)
+2026-02-22 08:00:51,109 [INFO] src.models.trainer: Array split: train=12214, val=2617, test=2618
+2026-02-22 08:00:51,191 [INFO] src.preprocessing.data_cleaner: Fitted minmax scalers on 66 features
+2026-02-22 08:00:51,192 [INFO] __main__: 
+--- Training Deep-XAI-Stable ---
+2026-02-22 08:00:51,305 [INFO] src.models.trainer: Starting training: 200 epochs, batch_size=64, train_size=12214, val_size=2617
+2026-02-22 08:03:33,748 [INFO] __main__: ============================================================
+2026-02-22 08:03:33,748 [INFO] __main__:   Deep-XAI-Stable Pipeline
+2026-02-22 08:03:33,748 [INFO] __main__:   Stablecoin Price Prediction with Explainability
+2026-02-22 08:03:33,748 [INFO] __main__: ============================================================
+2026-02-22 08:03:33,748 [INFO] __main__: Mode: full
+2026-02-22 08:03:33,748 [INFO] __main__: Config: configs/config.yaml
+2026-02-22 08:03:33,748 [INFO] __main__: Real data: False
+2026-02-22 08:03:33,748 [INFO] __main__: ============================================================
+2026-02-22 08:03:33,748 [INFO] __main__: STAGE 1: DATA COLLECTION
+2026-02-22 08:03:33,749 [INFO] __main__: ============================================================
+2026-02-22 08:03:33,749 [INFO] __main__: 
+--- Collecting data for USDT ---
+2026-02-22 08:03:33,749 [INFO] __main__: Generating synthetic market data for USDT
+2026-02-22 08:03:33,764 [INFO] src.data.onchain_data: Combined 6 on-chain metrics
+2026-02-22 08:03:33,765 [WARNING] src.data.sentiment_data: No Twitter bearer token provided, generating synthetic data
+2026-02-22 08:03:33,767 [INFO] src.data.sentiment_data: Generated 17521 synthetic twitter sentiment data points
+2026-02-22 08:03:33,767 [INFO] __main__:   Market: (17521, 5), On-chain: (731, 6), Sentiment: (17521, 3)
+2026-02-22 08:03:33,767 [INFO] __main__: 
+--- Collecting data for USDC ---
+2026-02-22 08:03:33,767 [INFO] __main__: Generating synthetic market data for USDC
+2026-02-22 08:03:33,781 [INFO] src.data.onchain_data: Combined 6 on-chain metrics
+2026-02-22 08:03:33,781 [WARNING] src.data.sentiment_data: No Twitter bearer token provided, generating synthetic data
+2026-02-22 08:03:33,783 [INFO] src.data.sentiment_data: Generated 17521 synthetic twitter sentiment data points
+2026-02-22 08:03:33,783 [INFO] __main__:   Market: (17521, 5), On-chain: (731, 6), Sentiment: (17521, 3)
+2026-02-22 08:03:33,783 [INFO] __main__: 
+--- Collecting data for DAI ---
+2026-02-22 08:03:33,783 [INFO] __main__: Generating synthetic market data for DAI
+2026-02-22 08:03:33,797 [INFO] src.data.onchain_data: Combined 6 on-chain metrics
+2026-02-22 08:03:33,797 [WARNING] src.data.sentiment_data: No Twitter bearer token provided, generating synthetic data
+2026-02-22 08:03:33,799 [INFO] src.data.sentiment_data: Generated 17521 synthetic twitter sentiment data points
+2026-02-22 08:03:33,799 [INFO] __main__:   Market: (17521, 5), On-chain: (731, 6), Sentiment: (17521, 3)
+2026-02-22 08:03:34,435 [INFO] __main__: 
+Raw data saved to data/raw/
+2026-02-22 08:03:34,435 [INFO] __main__: 
+============================================================
+2026-02-22 08:03:34,435 [INFO] __main__: STAGE 2: DATA PREPROCESSING
+2026-02-22 08:03:34,435 [INFO] __main__: ============================================================
+2026-02-22 08:03:34,435 [INFO] __main__: 
+--- Preprocessing USDT ---
+2026-02-22 08:03:34,436 [INFO] src.preprocessing.data_cleaner: No missing values found
+2026-02-22 08:03:34,448 [INFO] src.preprocessing.data_cleaner: Total outliers clipped: 6561
+2026-02-22 08:03:34,448 [INFO] src.preprocessing.data_cleaner: No missing values found
+2026-02-22 08:03:34,449 [INFO] src.preprocessing.data_cleaner: No missing values found
+2026-02-22 08:03:34,452 [INFO] src.preprocessing.data_cleaner: Aligned 3 DataFrames to 1h frequency. Shape: (17521, 13)
+2026-02-22 08:03:34,452 [INFO] __main__:   Combined shape after alignment: (17521, 13)
+2026-02-22 08:03:34,452 [INFO] __main__: 
+--- Preprocessing USDC ---
+2026-02-22 08:03:34,452 [INFO] src.preprocessing.data_cleaner: No missing values found
+2026-02-22 08:03:34,462 [INFO] src.preprocessing.data_cleaner: Total outliers clipped: 6561
+2026-02-22 08:03:34,463 [INFO] src.preprocessing.data_cleaner: No missing values found
+2026-02-22 08:03:34,463 [INFO] src.preprocessing.data_cleaner: No missing values found
+2026-02-22 08:03:34,466 [INFO] src.preprocessing.data_cleaner: Aligned 3 DataFrames to 1h frequency. Shape: (17521, 13)
+2026-02-22 08:03:34,466 [INFO] __main__:   Combined shape after alignment: (17521, 13)
+2026-02-22 08:03:34,466 [INFO] __main__: 
+--- Preprocessing DAI ---
+2026-02-22 08:03:34,466 [INFO] src.preprocessing.data_cleaner: No missing values found
+2026-02-22 08:03:34,476 [INFO] src.preprocessing.data_cleaner: Total outliers clipped: 5732
+2026-02-22 08:03:34,477 [INFO] src.preprocessing.data_cleaner: No missing values found
+2026-02-22 08:03:34,477 [INFO] src.preprocessing.data_cleaner: No missing values found
+2026-02-22 08:03:34,480 [INFO] src.preprocessing.data_cleaner: Aligned 3 DataFrames to 1h frequency. Shape: (17521, 13)
+2026-02-22 08:03:34,480 [INFO] __main__:   Combined shape after alignment: (17521, 13)
+2026-02-22 08:03:34,480 [INFO] __main__: 
+============================================================
+2026-02-22 08:03:34,481 [INFO] __main__: STAGE 3: FEATURE ENGINEERING
+2026-02-22 08:03:34,481 [INFO] __main__: ============================================================
+2026-02-22 08:03:34,481 [INFO] __main__: 
+--- Engineering features for USDT ---
+2026-02-22 08:03:34,481 [INFO] src.preprocessing.feature_engineering: Starting feature engineering. Initial shape: (17521, 13)
+2026-02-22 08:03:34,540 [INFO] src.preprocessing.feature_engineering: Feature engineering complete. Final shape: (17497, 69) (dropped 24 rows with NaN)
+2026-02-22 08:03:34,541 [INFO] __main__:   Features shape: (17497, 69)
+2026-02-22 08:03:34,541 [INFO] __main__: 
+--- Engineering features for USDC ---
+2026-02-22 08:03:34,541 [INFO] src.preprocessing.feature_engineering: Starting feature engineering. Initial shape: (17521, 13)
+2026-02-22 08:03:34,585 [INFO] src.preprocessing.feature_engineering: Feature engineering complete. Final shape: (17497, 69) (dropped 24 rows with NaN)
+2026-02-22 08:03:34,585 [INFO] __main__:   Features shape: (17497, 69)
+2026-02-22 08:03:34,585 [INFO] __main__: 
+--- Engineering features for DAI ---
+2026-02-22 08:03:34,585 [INFO] src.preprocessing.feature_engineering: Starting feature engineering. Initial shape: (17521, 13)
+2026-02-22 08:03:34,630 [INFO] src.preprocessing.feature_engineering: Feature engineering complete. Final shape: (17497, 69) (dropped 24 rows with NaN)
+2026-02-22 08:03:34,631 [INFO] __main__:   Features shape: (17497, 69)
+2026-02-22 08:03:40,104 [INFO] __main__: 
+============================================================
+2026-02-22 08:03:40,104 [INFO] __main__: STAGE 4: MODEL TRAINING & EVALUATION
+2026-02-22 08:03:40,105 [INFO] __main__: ============================================================
+2026-02-22 08:03:40,105 [INFO] __main__: 
+========================================
+2026-02-22 08:03:40,105 [INFO] __main__: Training models for USDT
+2026-02-22 08:03:40,105 [INFO] __main__: ========================================
+2026-02-22 08:03:40,306 [INFO] src.models.trainer: Created 17449 sequences: X(17449, 48, 66), y(17449,)
+2026-02-22 08:03:40,306 [INFO] __main__:   Input shape: (17449, 48, 66), Target shape: (17449,)
+2026-02-22 08:03:40,306 [INFO] src.models.trainer: Array split: train=12214, val=2617, test=2618
+2026-02-22 08:03:40,378 [INFO] src.preprocessing.data_cleaner: Fitted minmax scalers on 66 features
+2026-02-22 08:03:40,378 [INFO] __main__: 
+--- Training Deep-XAI-Stable ---
+2026-02-22 08:03:40,614 [INFO] src.models.trainer: Starting training: 200 epochs, batch_size=64, train_size=12214, val_size=2617
+2026-02-22 08:07:31,389 [INFO] src.models.trainer: Training complete. Best val_loss: 0.000246
+2026-02-22 08:07:38,345 [INFO] src.evaluation.visualizer: Training history plot saved
+2026-02-22 08:07:38,345 [INFO] __main__: 
+--- Training Simple LSTM ---
+2026-02-22 08:10:39,631 [INFO] __main__: --- Training GRU ---
+2026-02-22 08:12:18,756 [INFO] __main__: --- Training ARIMA ---
+2026-02-22 08:12:20,275 [INFO] src.models.baseline_models: ARIMA(5, 1, 0) fitted successfully
+2026-02-22 08:12:20,308 [INFO] __main__: 
+--- Evaluation ---
+2026-02-22 08:12:20,308 [INFO] src.evaluation.metrics: === Deep-XAI-Stable Evaluation ===
+2026-02-22 08:12:20,308 [INFO] src.evaluation.metrics:   rmse: 0.015888
+2026-02-22 08:12:20,308 [INFO] src.evaluation.metrics:   mae: 0.013537
+2026-02-22 08:12:20,309 [INFO] src.evaluation.metrics:   mape: 242.093140
+2026-02-22 08:12:20,309 [INFO] src.evaluation.metrics:   directional_accuracy: 13.985480
+2026-02-22 08:12:20,309 [INFO] src.evaluation.metrics:   r_squared: -0.674433
+2026-02-22 08:12:20,309 [INFO] src.evaluation.metrics: === Simple_LSTM Evaluation ===
+2026-02-22 08:12:20,309 [INFO] src.evaluation.metrics:   rmse: 0.015524
+2026-02-22 08:12:20,309 [INFO] src.evaluation.metrics:   mae: 0.013138
+2026-02-22 08:12:20,309 [INFO] src.evaluation.metrics:   mape: 213.981369
+2026-02-22 08:12:20,309 [INFO] src.evaluation.metrics:   directional_accuracy: 30.875048
+2026-02-22 08:12:20,309 [INFO] src.evaluation.metrics:   r_squared: -0.598654
+2026-02-22 08:12:20,309 [INFO] src.evaluation.metrics: === GRU Evaluation ===
+2026-02-22 08:12:20,309 [INFO] src.evaluation.metrics:   rmse: 0.015756
+2026-02-22 08:12:20,309 [INFO] src.evaluation.metrics:   mae: 0.013264
+2026-02-22 08:12:20,309 [INFO] src.evaluation.metrics:   mape: 210.849258
+2026-02-22 08:12:20,309 [INFO] src.evaluation.metrics:   directional_accuracy: 19.984715
+2026-02-22 08:12:20,309 [INFO] src.evaluation.metrics:   r_squared: -0.646674
+2026-02-22 08:12:20,310 [INFO] src.evaluation.metrics: === ARIMA Evaluation ===
+2026-02-22 08:12:20,310 [INFO] src.evaluation.metrics:   rmse: 0.013792
+2026-02-22 08:12:20,310 [INFO] src.evaluation.metrics:   mae: 0.010732
+2026-02-22 08:12:20,310 [INFO] src.evaluation.metrics:   mape: 352.496877
+2026-02-22 08:12:20,310 [INFO] src.evaluation.metrics:   directional_accuracy: 0.534964
+2026-02-22 08:12:20,310 [INFO] src.evaluation.metrics:   r_squared: -0.261684
+2026-02-22 08:12:20,311 [INFO] src.evaluation.metrics: DM Test: stat=7.6396, p=0.0000 *** (better: model2)
+2026-02-22 08:12:20,311 [INFO] src.evaluation.metrics: DM Test: stat=2.6960, p=0.0070 *** (better: model2)
+2026-02-22 08:12:20,311 [INFO] src.evaluation.metrics: DM Test: stat=7.9765, p=0.0000 *** (better: model2)
+2026-02-22 08:12:20,849 [INFO] src.evaluation.visualizer: Predictions vs actual plot saved
+2026-02-22 08:12:21,384 [INFO] src.evaluation.visualizer: Model comparison plot saved
+2026-02-22 08:12:21,773 [INFO] src.evaluation.visualizer: Error distribution plot saved
+2026-02-22 08:12:21,852 [INFO] src.models.trainer: Model saved to outputs/models/deep_xai_stable_USDT_final.keras
+2026-02-22 08:12:21,852 [INFO] __main__: 
+========================================
+2026-02-22 08:12:21,852 [INFO] __main__: Training models for USDC
+2026-02-22 08:12:21,852 [INFO] __main__: ========================================
+2026-02-22 08:12:22,054 [INFO] src.models.trainer: Created 17449 sequences: X(17449, 48, 66), y(17449,)
+2026-02-22 08:12:22,054 [INFO] __main__:   Input shape: (17449, 48, 66), Target shape: (17449,)
+2026-02-22 08:12:22,054 [INFO] src.models.trainer: Array split: train=12214, val=2617, test=2618
+2026-02-22 08:12:22,127 [INFO] src.preprocessing.data_cleaner: Fitted minmax scalers on 66 features
+2026-02-22 08:12:22,127 [INFO] __main__: 
+--- Training Deep-XAI-Stable ---
+2026-02-22 08:12:22,238 [INFO] src.models.trainer: Starting training: 200 epochs, batch_size=64, train_size=12214, val_size=2617
+2026-02-22 08:16:06,482 [INFO] src.models.trainer: Training complete. Best val_loss: 0.000229
+2026-02-22 08:16:13,453 [INFO] src.evaluation.visualizer: Training history plot saved
+2026-02-22 08:16:13,453 [INFO] __main__: 
+--- Training Simple LSTM ---
+2026-02-22 08:18:08,440 [INFO] __main__: --- Training GRU ---
+2026-02-22 08:19:50,560 [INFO] __main__: --- Training ARIMA ---
+2026-02-22 08:19:51,766 [INFO] src.models.baseline_models: ARIMA(5, 1, 0) fitted successfully
+2026-02-22 08:19:51,797 [INFO] __main__: 
+--- Evaluation ---
+2026-02-22 08:19:51,797 [INFO] src.evaluation.metrics: === Deep-XAI-Stable Evaluation ===
+2026-02-22 08:19:51,797 [INFO] src.evaluation.metrics:   rmse: 0.015444
+2026-02-22 08:19:51,797 [INFO] src.evaluation.metrics:   mae: 0.013164
+2026-02-22 08:19:51,797 [INFO] src.evaluation.metrics:   mape: 224.477982
+2026-02-22 08:19:51,797 [INFO] src.evaluation.metrics:   directional_accuracy: 16.622086
+2026-02-22 08:19:51,798 [INFO] src.evaluation.metrics:   r_squared: -0.582088
+2026-02-22 08:19:51,798 [INFO] src.evaluation.metrics: === Simple_LSTM Evaluation ===
+2026-02-22 08:19:51,798 [INFO] src.evaluation.metrics:   rmse: 0.015756
+2026-02-22 08:19:51,798 [INFO] src.evaluation.metrics:   mae: 0.013301
+2026-02-22 08:19:51,799 [INFO] src.evaluation.metrics:   mape: 215.692871
+2026-02-22 08:19:51,799 [INFO] src.evaluation.metrics:   directional_accuracy: 28.047382
+2026-02-22 08:19:51,799 [INFO] src.evaluation.metrics:   r_squared: -0.646763
+2026-02-22 08:19:51,799 [INFO] src.evaluation.metrics: === GRU Evaluation ===
+2026-02-22 08:19:51,799 [INFO] src.evaluation.metrics:   rmse: 0.015357
+2026-02-22 08:19:51,799 [INFO] src.evaluation.metrics:   mae: 0.013082
+2026-02-22 08:19:51,799 [INFO] src.evaluation.metrics:   mape: 224.241608
+2026-02-22 08:19:51,799 [INFO] src.evaluation.metrics:   directional_accuracy: 49.407719
+2026-02-22 08:19:51,799 [INFO] src.evaluation.metrics:   r_squared: -0.564434
+2026-02-22 08:19:51,799 [INFO] src.evaluation.metrics: === ARIMA Evaluation ===
+2026-02-22 08:19:51,799 [INFO] src.evaluation.metrics:   rmse: 0.013792
+2026-02-22 08:19:51,799 [INFO] src.evaluation.metrics:   mae: 0.010732
+2026-02-22 08:19:51,799 [INFO] src.evaluation.metrics:   mape: 352.496877
+2026-02-22 08:19:51,799 [INFO] src.evaluation.metrics:   directional_accuracy: 0.534964
+2026-02-22 08:19:51,799 [INFO] src.evaluation.metrics:   r_squared: -0.261684
+2026-02-22 08:19:51,800 [INFO] src.evaluation.metrics: DM Test: stat=-3.8473, p=0.0001 *** (better: model1)
+2026-02-22 08:19:51,800 [INFO] src.evaluation.metrics: DM Test: stat=2.7376, p=0.0062 *** (better: model2)
+2026-02-22 08:19:51,800 [INFO] src.evaluation.metrics: DM Test: stat=6.4721, p=0.0000 *** (better: model2)
+2026-02-22 08:19:52,305 [INFO] src.evaluation.visualizer: Predictions vs actual plot saved
+2026-02-22 08:19:52,831 [INFO] src.evaluation.visualizer: Model comparison plot saved
+2026-02-22 08:19:53,231 [INFO] src.evaluation.visualizer: Error distribution plot saved
+2026-02-22 08:19:53,307 [INFO] src.models.trainer: Model saved to outputs/models/deep_xai_stable_USDC_final.keras
+2026-02-22 08:19:53,308 [INFO] __main__: 
+========================================
+2026-02-22 08:19:53,308 [INFO] __main__: Training models for DAI
+2026-02-22 08:19:53,308 [INFO] __main__: ========================================
+2026-02-22 08:19:53,513 [INFO] src.models.trainer: Created 17449 sequences: X(17449, 48, 66), y(17449,)
+2026-02-22 08:19:53,513 [INFO] __main__:   Input shape: (17449, 48, 66), Target shape: (17449,)
+2026-02-22 08:19:53,514 [INFO] src.models.trainer: Array split: train=12214, val=2617, test=2618
+2026-02-22 08:19:53,587 [INFO] src.preprocessing.data_cleaner: Fitted minmax scalers on 66 features
+2026-02-22 08:19:53,588 [INFO] __main__: 
+--- Training Deep-XAI-Stable ---
+2026-02-22 08:19:53,701 [INFO] src.models.trainer: Starting training: 200 epochs, batch_size=64, train_size=12214, val_size=2617
+2026-02-22 08:23:39,689 [INFO] src.models.trainer: Training complete. Best val_loss: 0.001592
+2026-02-22 08:23:46,608 [INFO] src.evaluation.visualizer: Training history plot saved
+2026-02-22 08:23:46,608 [INFO] __main__: 
+--- Training Simple LSTM ---
+2026-02-22 08:25:18,519 [INFO] __main__: --- Training GRU ---
+2026-02-22 08:26:54,381 [INFO] __main__: --- Training ARIMA ---
+2026-02-22 08:26:55,558 [INFO] src.models.baseline_models: ARIMA(5, 1, 0) fitted successfully
+2026-02-22 08:26:55,589 [INFO] __main__: 
+--- Evaluation ---
+2026-02-22 08:26:55,590 [INFO] src.evaluation.metrics: === Deep-XAI-Stable Evaluation ===
+2026-02-22 08:26:55,590 [INFO] src.evaluation.metrics:   rmse: 0.038150
+2026-02-22 08:26:55,590 [INFO] src.evaluation.metrics:   mae: 0.032252
+2026-02-22 08:26:55,590 [INFO] src.evaluation.metrics:   mape: 205.599945
+2026-02-22 08:26:55,590 [INFO] src.evaluation.metrics:   directional_accuracy: 12.533435
+2026-02-22 08:26:55,590 [INFO] src.evaluation.metrics:   r_squared: -0.544673
+2026-02-22 08:26:55,590 [INFO] src.evaluation.metrics: === Simple_LSTM Evaluation ===
+2026-02-22 08:26:55,590 [INFO] src.evaluation.metrics:   rmse: 0.037954
+2026-02-22 08:26:55,590 [INFO] src.evaluation.metrics:   mae: 0.032209
+2026-02-22 08:26:55,590 [INFO] src.evaluation.metrics:   mape: 210.590698
+2026-02-22 08:26:55,591 [INFO] src.evaluation.metrics:   directional_accuracy: 29.346580
+2026-02-22 08:26:55,591 [INFO] src.evaluation.metrics:   r_squared: -0.528845
+2026-02-22 08:26:55,591 [INFO] src.evaluation.metrics: === GRU Evaluation ===
+2026-02-22 08:26:55,591 [INFO] src.evaluation.metrics:   rmse: 0.036709
+2026-02-22 08:26:55,591 [INFO] src.evaluation.metrics:   mae: 0.031265
+2026-02-22 08:26:55,591 [INFO] src.evaluation.metrics:   mape: 185.746124
+2026-02-22 08:26:55,591 [INFO] src.evaluation.metrics:   directional_accuracy: 51.050822
+2026-02-22 08:26:55,591 [INFO] src.evaluation.metrics:   r_squared: -0.430164
+2026-02-22 08:26:55,592 [INFO] src.evaluation.metrics: === ARIMA Evaluation ===
+2026-02-22 08:26:55,592 [INFO] src.evaluation.metrics:   rmse: 0.034480
+2026-02-22 08:26:55,592 [INFO] src.evaluation.metrics:   mae: 0.026830
+2026-02-22 08:26:55,592 [INFO] src.evaluation.metrics:   mape: 352.529878
+2026-02-22 08:26:55,592 [INFO] src.evaluation.metrics:   directional_accuracy: 0.534964
+2026-02-22 08:26:55,592 [INFO] src.evaluation.metrics:   r_squared: -0.261776
+2026-02-22 08:26:55,592 [INFO] src.evaluation.metrics: DM Test: stat=0.9541, p=0.3401  (better: model2)
+2026-02-22 08:26:55,592 [INFO] src.evaluation.metrics: DM Test: stat=13.7951, p=0.0000 *** (better: model2)
+2026-02-22 08:26:55,593 [INFO] src.evaluation.metrics: DM Test: stat=5.7144, p=0.0000 *** (better: model2)
+2026-02-22 08:26:56,110 [INFO] src.evaluation.visualizer: Predictions vs actual plot saved
+2026-02-22 08:26:56,639 [INFO] src.evaluation.visualizer: Model comparison plot saved
+2026-02-22 08:26:57,038 [INFO] src.evaluation.visualizer: Error distribution plot saved
+2026-02-22 08:26:57,112 [INFO] src.models.trainer: Model saved to outputs/models/deep_xai_stable_DAI_final.keras
+2026-02-22 08:26:57,112 [INFO] __main__: 
+============================================================
+2026-02-22 08:26:57,112 [INFO] __main__: STAGE 5: XAI ANALYSIS (SHAP)
+2026-02-22 08:26:57,112 [INFO] __main__: ============================================================
+2026-02-22 08:26:57,113 [INFO] __main__: 
+--- SHAP analysis for USDT ---
+2026-02-22 08:26:58,002 [WARNING] __main__: SHAP analysis failed for USDT: Instance must have 1 or 2 dimensions!
+2026-02-22 08:26:58,002 [WARNING] __main__: Continuing without XAI analysis...
+2026-02-22 08:26:58,002 [INFO] __main__: 
+--- SHAP analysis for USDC ---
+2026-02-22 08:26:58,183 [WARNING] __main__: SHAP analysis failed for USDC: Instance must have 1 or 2 dimensions!
+2026-02-22 08:26:58,184 [WARNING] __main__: Continuing without XAI analysis...
+2026-02-22 08:26:58,184 [INFO] __main__: 
+--- SHAP analysis for DAI ---
+2026-02-22 08:26:58,273 [WARNING] __main__: SHAP analysis failed for DAI: Instance must have 1 or 2 dimensions!
+2026-02-22 08:26:58,273 [WARNING] __main__: Continuing without XAI analysis...
+2026-02-22 08:26:58,278 [INFO] __main__: 
+============================================================
+2026-02-22 08:26:58,278 [INFO] __main__:   Pipeline Complete!
+2026-02-22 08:26:58,278 [INFO] __main__: ============================================================

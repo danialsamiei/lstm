@@ -1,0 +1,170 @@
+{
+  "USDT": {
+    "Deep-XAI-Stable": {
+      "rmse": 0.015888100489974022,
+      "mae": 0.013537289574742317,
+      "mape": 242.0931396484375,
+      "directional_accuracy": 13.985479556744366,
+      "r_squared": -0.6744329929351807
+    },
+    "Simple_LSTM": {
+      "rmse": 0.015524417161941528,
+      "mae": 0.013138387352228165,
+      "mape": 213.9813690185547,
+      "directional_accuracy": 30.87504776461597,
+      "r_squared": -0.5986539125442505
+    },
+    "GRU": {
+      "rmse": 0.015755852684378624,
+      "mae": 0.013263650238513947,
+      "mape": 210.84925842285156,
+      "directional_accuracy": 19.984715322888803,
+      "r_squared": -0.6466741561889648
+    },
+    "ARIMA": {
+      "rmse": 0.013791560731168356,
+      "mae": 0.01073175607395193,
+      "mape": 352.496876805546,
+      "directional_accuracy": 0.5349636988918609,
+      "r_squared": -0.2616842267458268
+    },
+    "diebold_mariano": {
+      "Deep-XAI-Stable_vs_Simple_LSTM": {
+        "dm_statistic": 7.639587798508607,
+        "p_value": 2.1760371282653068e-14,
+        "significance": "***",
+        "conclusion": "Highly significant difference (p < 0.01)",
+        "mean_loss_differential": 1.142419296229491e-05,
+        "better_model": "model2"
+      },
+      "Deep-XAI-Stable_vs_GRU": {
+        "dm_statistic": 2.6959933954743938,
+        "p_value": 0.007017905815379644,
+        "significance": "***",
+        "conclusion": "Highly significant difference (p < 0.01)",
+        "mean_loss_differential": 4.184817953500897e-06,
+        "better_model": "model2"
+      },
+      "Deep-XAI-Stable_vs_ARIMA": {
+        "dm_statistic": 7.976544790777604,
+        "p_value": 1.5543122344752192e-15,
+        "significance": "***",
+        "conclusion": "Highly significant difference (p < 0.01)",
+        "mean_loss_differential": 6.222457550076397e-05,
+        "better_model": "model2"
+      }
+    }
+  },
+  "USDC": {
+    "Deep-XAI-Stable": {
+      "rmse": 0.015443773008883,
+      "mae": 0.013164120726287365,
+      "mape": 224.4779815673828,
+      "directional_accuracy": 16.622086358425676,
+      "r_squared": -0.5820881128311157
+    },
+    "Simple_LSTM": {
+      "rmse": 0.015756279230117798,
+      "mae": 0.013300515711307526,
+      "mape": 215.69287109375,
+      "directional_accuracy": 28.04738249904471,
+      "r_squared": -0.6467634439468384
+    },
+    "GRU": {
+      "rmse": 0.015357366763055325,
+      "mae": 0.013081712648272514,
+      "mape": 224.24160766601562,
+      "directional_accuracy": 49.407718761941155,
+      "r_squared": -0.564434289932251
+    },
+    "ARIMA": {
+      "rmse": 0.013791560731168356,
+      "mae": 0.01073175607395193,
+      "mape": 352.496876805546,
+      "directional_accuracy": 0.5349636988918609,
+      "r_squared": -0.2616842267458268
+    },
+    "diebold_mariano": {
+      "Deep-XAI-Stable_vs_Simple_LSTM": {
+        "dm_statistic": -3.8473316265743374,
+        "p_value": 0.00011941128747317009,
+        "significance": "***",
+        "conclusion": "Highly significant difference (p < 0.01)",
+        "mean_loss_differential": -9.750209756020922e-06,
+        "better_model": "model1"
+      },
+      "Deep-XAI-Stable_vs_GRU": {
+        "dm_statistic": 2.73760566249457,
+        "p_value": 0.006188823546635636,
+        "significance": "***",
+        "conclusion": "Highly significant difference (p < 0.01)",
+        "mean_loss_differential": 2.661433427419979e-06,
+        "better_model": "model2"
+      },
+      "Deep-XAI-Stable_vs_ARIMA": {
+        "dm_statistic": 6.472122922348184,
+        "p_value": 9.66353663756081e-11,
+        "significance": "***",
+        "conclusion": "Highly significant difference (p < 0.01)",
+        "mean_loss_differential": 4.830299523515094e-05,
+        "better_model": "model2"
+      }
+    }
+  },
+  "DAI": {
+    "Deep-XAI-Stable": {
+      "rmse": 0.03815016523003578,
+      "mae": 0.03225186467170715,
+      "mape": 205.59994506835938,
+      "directional_accuracy": 12.533435231180743,
+      "r_squared": -0.5446733236312866
+    },
+    "Simple_LSTM": {
+      "rmse": 0.037954192608594894,
+      "mae": 0.03220862150192261,
+      "mape": 210.5906982421875,
+      "directional_accuracy": 29.346580053496368,
+      "r_squared": -0.5288445949554443
+    },
+    "GRU": {
+      "rmse": 0.03670886531472206,
+      "mae": 0.03126472234725952,
+      "mape": 185.74612426757812,
+      "directional_accuracy": 51.05082155139473,
+      "r_squared": -0.43016374111175537
+    },
+    "ARIMA": {
+      "rmse": 0.034480162788796946,
+      "mae": 0.02683031831753102,
+      "mape": 352.52987751207945,
+      "directional_accuracy": 0.5349636988918609,
+      "r_squared": -0.26177646722024317
+    },
+    "diebold_mariano": {
+      "Deep-XAI-Stable_vs_Simple_LSTM": {
+        "dm_statistic": 0.954055104283543,
+        "p_value": 0.3400557500483994,
+        "significance": "",
+        "conclusion": "No significant difference",
+        "mean_loss_differential": 1.491419789090287e-05,
+        "better_model": "model2"
+      },
+      "Deep-XAI-Stable_vs_GRU": {
+        "dm_statistic": 13.795065343401726,
+        "p_value": 0.0,
+        "significance": "***",
+        "conclusion": "Highly significant difference (p < 0.01)",
+        "mean_loss_differential": 0.00010789414955070242,
+        "better_model": "model2"
+      },
+      "Deep-XAI-Stable_vs_ARIMA": {
+        "dm_statistic": 5.714421028506607,
+        "p_value": 1.1007815325925208e-08,
+        "significance": "***",
+        "conclusion": "Highly significant difference (p < 0.01)",
+        "mean_loss_differential": 0.00026655342567339854,
+        "better_model": "model2"
+      }
+    }
+  }
+}
