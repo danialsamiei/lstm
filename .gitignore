@@ -6,3 +6,6 @@ __pycache__/
 dist/
 build/
 .eggs/
+# Large model binaries
+*.keras
+*.h5
